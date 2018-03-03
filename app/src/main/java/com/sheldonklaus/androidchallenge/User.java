@@ -1,5 +1,7 @@
 package com.sheldonklaus.androidchallenge;
 
+import android.graphics.Bitmap;
+
 import java.util.Map;
 
 /**
@@ -26,5 +28,16 @@ public class User {
     }
     public void setImageUrl(String imageUrl) {
         ImageUrl = imageUrl;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public Map<String, Integer> getBadges() {
+        return Badges;
+    }
+    public String getImageUrl() {
+        return ImageUrl;
     }
 }
