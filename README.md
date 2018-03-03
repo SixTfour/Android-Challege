@@ -3,5 +3,7 @@ Android applicaiton that calls the first 30 Stack Overflow users and displays th
 
 Android 5.1+ (Lollipop and later)
 
+[Download the application here!](https://github.com/SixTfour/Android-Challege/raw/master/Release/Android-Challenge-v1.0.apk)
+
 ## Libraries
 [Glide](https://bumptech.github.io/glide/), [GSON](https://github.com/google/gson), [CircleImageView](https://github.com/hdodenhof/CircleImageView)
