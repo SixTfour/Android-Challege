@@ -49,10 +49,11 @@ public class MainActivity extends AppCompatActivity {
         //Make API call to URL and set users & ListView
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
+
             public void onResponse(JSONObject response) {
                 users = getUsers(response);
-                CustomAdapter customAdapter = new CustomAdapter();
-                listView.setAdapter(customAdapter);
+                UserListAdapter userListAdapter = new UserListAdapter(mContext, users);
+                listView.setAdapter(userListAdapter);
             }
         }, new Response.ErrorListener() {
 
@@ -91,49 +92,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return users;
-    }
-
-    //Custom BaseAdapter class to be attached to the ListView
-    class CustomAdapter extends BaseAdapter {
-        @Override
-        public int getCount() {
-            return users.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            view = getLayoutInflater().inflate(R.layout.user_layout, null);
-
-            //Initialize text and image views
-            ImageView imageView = view.findViewById(R.id.profile_image);
-            TextView textView_name = view.findViewById(R.id.name);
-            TextView textView_bronze = view.findViewById(R.id.bronze);
-            TextView textView_silver = view.findViewById(R.id.silver);
-            TextView textView_gold = view.findViewById(R.id.gold);
-
-            //Setting values
-            textView_name.setText(users.get(i).getName());
-            textView_bronze.setText(users.get(i).getBadges().get("bronze").toString());
-            textView_silver.setText(users.get(i).getBadges().get("silver").toString());
-            textView_gold.setText(users.get(i).getBadges().get("gold").toString());
-
-            //Setting and caching image with Glide
-            Glide.with(mContext)
-                    .load((users.get(i).getImageUrl()))
-                    .thumbnail(Glide.with(mContext).load(R.drawable.preloader))
-                    .into(imageView);
-
-            return view;
-        }
     }
 }
