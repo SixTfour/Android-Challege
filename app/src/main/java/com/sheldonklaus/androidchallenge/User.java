@@ -9,6 +9,7 @@ import java.util.Map;
  */
 
 public class User {
+    //Simple user class
     private String Name;
     private Map <String, Integer> Badges;
     private String ImageUrl;
@@ -16,17 +17,6 @@ public class User {
     public User(String name, Map<String, Integer> badges, String imageUrl) {
         Name = name;
         Badges = badges;
-        ImageUrl = imageUrl;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public void setBadges(Map<String, Integer> badges) {
-        Badges = badges;
-    }
-    public void setImageUrl(String imageUrl) {
         ImageUrl = imageUrl;
     }
 
