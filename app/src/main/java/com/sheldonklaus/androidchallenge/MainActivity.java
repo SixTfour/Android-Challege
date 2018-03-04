@@ -47,11 +47,16 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.list);
 
         //Make API call to URL and set users & ListView
+        requestQueue.add(createUsersRequest(url));
+    }
+
+    //Create JsonObjectRequest to get users
+    private JsonObjectRequest createUsersRequest(String url) {
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
 
             public void onResponse(JSONObject response) {
-                users = getUsers(response);
+                users = createUsers(response);
                 UserListAdapter userListAdapter = new UserListAdapter(mContext, users);
                 listView.setAdapter(userListAdapter);
             }
@@ -59,14 +64,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                // TODO Auto-generated method stub
+                Log.e("Connection Error", error.getMessage());
             }
         });
 
-        requestQueue.add(jsObjRequest);
+        return jsObjRequest;
     }
 
-    private ArrayList<User> getUsers(JSONObject jsonObject) {
+    private ArrayList<User> createUsers(JSONObject jsonObject) {
         JSONArray jsonUsers;
         ArrayList<User> users = new ArrayList<User>();
 
