@@ -1,7 +1,5 @@
 package com.sheldonklaus.androidchallenge;
 
-import android.graphics.Bitmap;
-
 import java.util.Map;
 
 /**
