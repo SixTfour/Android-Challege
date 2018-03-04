@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(mContext);
         listView = findViewById(R.id.list);
 
-        //Make API call to URL and set users & ListView
+        //Make API call to URL and set users
         requestQueue.add(createUsersRequest(url));
     }
 
@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
 
             public void onResponse(JSONObject response) {
+                //Create Users and Attach them to ListView
                 users = createUsers(response);
                 UserListAdapter userListAdapter = new UserListAdapter(mContext, users);
                 listView.setAdapter(userListAdapter);
